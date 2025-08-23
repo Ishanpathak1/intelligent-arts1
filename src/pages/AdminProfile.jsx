@@ -132,8 +132,8 @@ const AdminProfile = () => {
 
         {/* Navigation Tabs */}
         <div className="bg-white rounded-lg shadow-sm mb-8">
-          <div className="border-b border-gray-200">
-            <nav className="flex">
+          <div className="md:border-b md:border-gray-200">
+            <nav className="hidden md:flex">
               <button
                 onClick={() => setActiveTab('profile')}
                 className={`px-6 py-4 text-sm font-medium ${

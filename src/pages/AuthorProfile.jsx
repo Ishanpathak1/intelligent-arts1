@@ -121,7 +121,7 @@ const AuthorProfile = () => {
         {/* Main Content with Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="hidden lg:block lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Navigation</h3>
               <nav className="space-y-2">
