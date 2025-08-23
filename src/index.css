@@ -90,3 +90,37 @@ body {
   font-size: 14px !important;
   font-weight: normal !important;
 }
+
+/* Admin glow animation */
+@keyframes admin-glow {
+  0% {
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.7),
+      0 0 6px rgba(59, 130, 246, 0.5),
+      0 0 10px rgba(34, 211, 238, 0.35);
+    color: rgb(37, 99, 235);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow:
+      0 0 6px rgba(59, 130, 246, 1),
+      0 0 14px rgba(59, 130, 246, 0.95),
+      0 0 22px rgba(34, 211, 238, 0.85),
+      0 0 36px rgba(34, 211, 238, 0.75);
+    color: rgb(29, 78, 216);
+    transform: scale(1.05);
+  }
+  100% {
+    text-shadow:
+      0 0 3px rgba(59, 130, 246, 0.7),
+      0 0 6px rgba(59, 130, 246, 0.5),
+      0 0 10px rgba(34, 211, 238, 0.35);
+    color: rgb(37, 99, 235);
+    transform: scale(1);
+  }
+}
+
+.admin-glow {
+  animation: admin-glow 1.1s ease-in-out infinite;
+  transform-origin: center;
+}
