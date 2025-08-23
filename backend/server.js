@@ -20,7 +20,13 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.options('*', cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -63,4 +69,10 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`MongoDB URI: ${process.env.MONGODB_URI}`);
+  if (!process.env.MONGODB_URI) {
+    console.warn('Warning: MONGODB_URI is not set. Database connection will fail.');
+  }
+  if (!process.env.JWT_SECRET) {
+    console.warn('Warning: JWT_SECRET is not set. Auth will not work.');
+  }
 }); 

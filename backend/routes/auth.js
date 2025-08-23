@@ -44,12 +44,21 @@ router.post('/login', [
       role: author.role
     };
 
+    // Ensure JWT secret exists in the environment
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET is not set. Cannot generate auth token.');
+      return res.status(500).json({ message: 'Server misconfiguration: missing JWT secret' });
+    }
+
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
       { expiresIn: '7d' },
       (err, token) => {
-        if (err) throw err;
+        if (err) {
+          console.error('JWT sign error:', err);
+          return res.status(500).json({ message: 'Failed to generate authentication token' });
+        }
         res.json({
           token,
           author: author.toPublicJSON()
