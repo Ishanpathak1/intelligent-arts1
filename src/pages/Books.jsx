@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Books = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [titles, setTitles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -49,7 +50,7 @@ const Books = () => {
   useEffect(() => {
     const fetchTitles = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/titles');
+        const response = await fetch(`${API_BASE_URL}/titles`);
         if (!response.ok) {
           throw new Error('Failed to fetch titles');
         }

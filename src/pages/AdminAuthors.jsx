@@ -23,7 +23,7 @@ const AdminAuthors = () => {
     role: 'author'
   });
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
   useEffect(() => {
     if (!token) return; // wait for token before fetching admin endpoint

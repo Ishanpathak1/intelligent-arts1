@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Authors = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +10,7 @@ const Authors = () => {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/authors');
+        const response = await fetch(`${API_BASE_URL}/authors`);
         if (!response.ok) {
           throw new Error('Failed to fetch authors');
         }

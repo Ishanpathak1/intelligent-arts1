@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 const AuthorProfile = () => {
   const { authorId } = useParams();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [author, setAuthor] = useState(null);
   const [authorWorks, setAuthorWorks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ const AuthorProfile = () => {
     const fetchAuthorData = async () => {
       try {
         // Fetch author details
-        const authorResponse = await fetch(`http://localhost:3001/api/authors/${authorId}`);
+        const authorResponse = await fetch(`${API_BASE_URL}/authors/${authorId}`);
         if (!authorResponse.ok) {
           throw new Error('Author not found');
         }
@@ -20,7 +21,7 @@ const AuthorProfile = () => {
         setAuthor(authorData);
 
         // Fetch author's works
-        const worksResponse = await fetch(`http://localhost:3001/api/titles?authorId=${authorId}`);
+        const worksResponse = await fetch(`${API_BASE_URL}/titles?authorId=${authorId}`);
         if (worksResponse.ok) {
           const worksData = await worksResponse.json();
           setAuthorWorks(worksData.titles || []);

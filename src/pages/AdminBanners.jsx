@@ -5,6 +5,7 @@ import FileUpload from '../components/FileUpload';
 
 const AdminBanners = () => {
   const { token } = useAuth();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [banners, setBanners] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [titles, setTitles] = useState([]);
@@ -41,9 +42,9 @@ const AdminBanners = () => {
   const fetchData = async () => {
     try {
       const [bannersRes, authorsRes, titlesRes] = await Promise.all([
-        fetch('http://localhost:3001/api/banners'),
-        fetch('http://localhost:3001/api/authors'),
-        fetch('http://localhost:3001/api/titles')
+        fetch(`${API_BASE_URL}/banners`),
+        fetch(`${API_BASE_URL}/authors`),
+        fetch(`${API_BASE_URL}/titles`)
       ]);
 
       const bannersData = await bannersRes.json();
@@ -86,8 +87,8 @@ const AdminBanners = () => {
       }
 
       const url = editingBanner 
-        ? `http://localhost:3001/api/banners/${editingBanner._id}`
-        : 'http://localhost:3001/api/banners';
+        ? `${API_BASE_URL}/banners/${editingBanner._id}`
+        : `${API_BASE_URL}/banners`;
       
       const method = editingBanner ? 'PUT' : 'POST';
 
@@ -166,7 +167,7 @@ const AdminBanners = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/banners/${bannerId}`, {
+      const response = await fetch(`${API_BASE_URL}/banners/${bannerId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

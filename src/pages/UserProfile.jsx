@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const UserProfile = () => {
   const { user } = useAuth();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || '',
@@ -26,7 +27,7 @@ const UserProfile = () => {
     setMessage('');
 
     try {
-      const response = await fetch(`http://localhost:3001/api/auth/profile`, {
+      const response = await fetch(`${API_BASE_URL}/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

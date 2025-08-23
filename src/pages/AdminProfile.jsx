@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AdminProfile = () => {
   const { user, token, updateUser } = useAuth();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -31,7 +32,7 @@ const AdminProfile = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3001/api/auth/profile', {
+      const response = await fetch(`${API_BASE_URL}/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ const AdminProfile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/auth/change-password', {
+      const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

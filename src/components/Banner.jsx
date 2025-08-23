@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Banner = ({ type = 'all', limit = 1 }) => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,8 +12,8 @@ const Banner = ({ type = 'all', limit = 1 }) => {
     const fetchBanners = async () => {
       try {
         const url = type === 'all' 
-          ? `http://localhost:3001/api/banners?limit=${limit}`
-          : `http://localhost:3001/api/banners?type=${type}&limit=${limit}`;
+          ? `${API_BASE_URL}/banners?limit=${limit}`
+          : `${API_BASE_URL}/banners?type=${type}&limit=${limit}`;
         
         const response = await fetch(url);
         if (!response.ok) {

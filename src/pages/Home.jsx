@@ -4,6 +4,7 @@ import HeroCarousel from '../components/HeroCarousel';
 import Banner from '../components/Banner';
 
 const Home = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [titles, setTitles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,7 +52,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTitles = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/titles?limit=8');
+        const response = await fetch(`${API_BASE_URL}/titles?limit=8`);
         if (!response.ok) {
           throw new Error('Failed to fetch titles');
         }

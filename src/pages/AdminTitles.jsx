@@ -5,6 +5,7 @@ import FileUpload from '../components/FileUpload';
 
 const AdminTitles = () => {
   const { token } = useAuth();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [titles, setTitles] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -96,8 +97,8 @@ const AdminTitles = () => {
   const fetchData = async () => {
     try {
       const [titlesRes, authorsRes] = await Promise.all([
-        fetch('http://localhost:3001/api/titles'),
-        fetch('http://localhost:3001/api/authors')
+        fetch(`${API_BASE_URL}/titles`),
+        fetch(`${API_BASE_URL}/authors`)
       ]);
 
       const titlesData = await titlesRes.json();
@@ -124,8 +125,8 @@ const AdminTitles = () => {
       };
 
       const url = editingTitle 
-        ? `http://localhost:3001/api/titles/${editingTitle._id}`
-        : 'http://localhost:3001/api/titles';
+        ? `${API_BASE_URL}/titles/${editingTitle._id}`
+        : `${API_BASE_URL}/titles`;
       
       const method = editingTitle ? 'PUT' : 'POST';
 
@@ -208,7 +209,7 @@ const AdminTitles = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/titles/${titleId}`, {
+      const response = await fetch(`${API_BASE_URL}/titles/${titleId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

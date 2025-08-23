@@ -9,6 +9,7 @@ import 'swiper/css/effect-fade';
 
 const BookDetail = () => {
   const { bookId } = useParams();
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [book, setBook] = useState(null);
   const [relatedBooks, setRelatedBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ const BookDetail = () => {
   useEffect(() => {
     const fetchBookDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/titles/${bookId}`);
+        const response = await fetch(`${API_BASE_URL}/titles/${bookId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch book details');
         }
@@ -26,7 +27,7 @@ const BookDetail = () => {
         setBook(data);
         
         // Fetch related books
-        const relatedResponse = await fetch(`http://localhost:3001/api/titles?limit=6&category=${data.category}`);
+        const relatedResponse = await fetch(`${API_BASE_URL}/titles?limit=6&category=${data.category}`);
         if (relatedResponse.ok) {
           const relatedData = await relatedResponse.json();
           setRelatedBooks(relatedData.titles?.filter(b => b._id !== bookId) || []);

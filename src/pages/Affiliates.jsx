@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 // It fetches authors and a primary title cover per author for context
 
 const Affiliates = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ const Affiliates = () => {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/authors');
+        const res = await fetch(`${API_BASE_URL}/authors`);
         if (!res.ok) throw new Error('Failed to fetch authors');
         const auths = await res.json();
 
@@ -26,7 +27,7 @@ const Affiliates = () => {
         const withCovers = await Promise.all(
           auths.map(async (a) => {
             try {
-              const r = await fetch(`http://localhost:3001/api/titles?authorId=${a._id}&limit=1`);
+              const r = await fetch(`${API_BASE_URL}/titles?authorId=${a._id}&limit=1`);
               if (r.ok) {
                 const d = await r.json();
                 const primary = d.titles && d.titles.length > 0 ? d.titles[0] : null;
