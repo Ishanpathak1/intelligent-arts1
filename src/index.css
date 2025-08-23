@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations for banner */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Custom shadow for banner glow */
+.hover\:shadow-3xl:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Swiper custom styles */
+.swiper-pagination-bullet {
+  @apply !w-2 !h-2 !bg-gray-300 !opacity-50;
+}
+
+.swiper-pagination-bullet-active {
+  @apply !bg-blue-600 !opacity-100;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply !text-gray-400 !bg-white/30 hover:!bg-white/50 !rounded-full !w-8 !h-8 !shadow-sm;
+}
+
+.swiper-pagination {
+  @apply !bottom-2;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Custom carousel styles - Subtle version */
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: rgba(156, 163, 175, 0.3) !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: rgba(59, 130, 246, 0.6) !important;
+  transform: scale(1.1) !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgba(75, 85, 99, 0.4) !important;
+  transition: all 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: rgba(31, 41, 55, 0.7) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 14px !important;
+  font-weight: normal !important;
+}
