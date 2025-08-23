@@ -115,7 +115,7 @@ const BookDetail = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section with Carousel */}
-      <div className="relative h-96 md:h-[500px] overflow-hidden">
+      <div className="relative h-64 sm:h-80 md:h-[500px] overflow-hidden hidden md:block">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           effect="fade"
@@ -151,13 +151,13 @@ const BookDetail = () => {
         <div className="space-y-10">
           <div>
             {/* Book Header */}
-            <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="flex-shrink-0">
+            <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-8">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                <div className="md:flex-shrink-0 w-full md:w-auto flex justify-center">
                   <img
                     src={book.image}
                     alt={book.title}
-                    className="w-64 h-80 object-cover rounded-lg shadow-md"
+                    className="w-full max-w-xs sm:max-w-sm md:w-64 md:h-80 h-64 object-cover rounded-lg shadow-md"
                   />
                 </div>
                 <div className="flex-1">
@@ -248,7 +248,7 @@ const BookDetail = () => {
               {/* Details */}
               <section>
                 <h3 className="text-xl font-semibold mb-4">Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <span className="font-medium text-gray-600">Category:</span>
                     <p className="text-gray-900">{formatCategory(book.category)}</p>
@@ -291,7 +291,7 @@ const BookDetail = () => {
                   <div className="space-y-4">
                     {book.purchaseLinks.filter(link => link.isActive).map((link, index) => (
                       <div key={index} className="border border-gray-200 rounded-lg p-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                           <div>
                             <h4 className="font-semibold text-lg">{link.platform}</h4>
                             {book.showPricing && link.price && (
@@ -302,7 +302,7 @@ const BookDetail = () => {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                            className="w-full sm:w-auto text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
                           >
                             Buy Now
                           </a>
