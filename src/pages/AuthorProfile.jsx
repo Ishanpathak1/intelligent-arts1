@@ -104,15 +104,15 @@ const AuthorProfile = () => {
         <div className="bg-white rounded-lg shadow-md p-8 mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{author.name}</h1>
-              <p className="text-lg text-gray-600 mb-6">{author.intro}</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">{author.name}</h1>
+              <p className="text-base sm:text-lg text-gray-600 mb-6">{author.intro}</p>
               <p className="text-gray-700 leading-relaxed">{author.bio}</p>
             </div>
             <div className="flex justify-center lg:justify-end">
               <img
                 src={author.image}
                 alt={author.name}
-                className="w-80 h-80 object-contain bg-gray-100 rounded-lg shadow-lg"
+                className="w-full max-w-80 h-64 sm:h-80 object-contain bg-gray-100 rounded-lg shadow-lg"
               />
             </div>
           </div>

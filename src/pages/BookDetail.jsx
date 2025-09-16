@@ -134,10 +134,10 @@ const BookDetail = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">{book.title}</h1>
-                    <p className="text-xl md:text-2xl">{book.authorId?.name || 'Unknown Author'}</p>
+                <div className="absolute inset-0 flex items-center justify-center px-4">
+                  <div className="text-center text-white max-w-4xl">
+                    <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 leading-tight">{book.title}</h1>
+                    <p className="text-lg sm:text-xl md:text-2xl">{book.authorId?.name || 'Unknown Author'}</p>
                   </div>
                 </div>
               </div>
@@ -147,7 +147,7 @@ const BookDetail = () => {
       </div>
 
       {/* Main Content (single flow, no tabs) */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
         <div className="space-y-10">
           <div>
             {/* Book Header */}
@@ -161,28 +161,29 @@ const BookDetail = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(book.category)}`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium w-fit ${getCategoryColor(book.category)}`}>
                       {formatCategory(book.category)}
                     </span>
-                    <span className="text-gray-500">•</span>
-                    <span className="text-gray-600">Published {new Date(book.publishDate || book.createdAt).getFullYear()}</span>
-                    {book.format && (
-                      <>
-                        <span className="text-gray-500">•</span>
-                        <span className="text-gray-600 capitalize">{book.format}</span>
-                      </>
-                    )}
-                    {book.language && (
-                      <>
-                        <span className="text-gray-500">•</span>
-                        <span className="text-gray-600">{book.language}</span>
-                      </>
-                    )}
+                    <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+                      <span className="text-gray-600">Published {new Date(book.publishDate || book.createdAt).getFullYear()}</span>
+                      {book.format && (
+                        <>
+                          <span className="text-gray-500 hidden sm:inline">•</span>
+                          <span className="text-gray-600 capitalize">{book.format}</span>
+                        </>
+                      )}
+                      {book.language && (
+                        <>
+                          <span className="text-gray-500 hidden sm:inline">•</span>
+                          <span className="text-gray-600">{book.language}</span>
+                        </>
+                      )}
+                    </div>
                   </div>
                   
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">{book.title}</h1>
-                  <p className="text-xl text-gray-600 mb-4">by {book.authorId?.name || 'Unknown Author'}</p>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 leading-tight">{book.title}</h1>
+                  <p className="text-lg sm:text-xl text-gray-600 mb-4">by {book.authorId?.name || 'Unknown Author'}</p>
                   
                   {/* Ratings removed as per requirement */}
 

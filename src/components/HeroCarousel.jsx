@@ -49,17 +49,19 @@ const HeroCarousel = () => {
       >
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center bg-gray-100 rounded-lg overflow-hidden shadow p-6 md:p-10">
-              <div className="w-full md:w-[40%]">
-                <img
-                  src={slide.image}
-                  alt="Slide"
-                  className="w-full md:w-[90%] max-h-[280px] object-contain mx-auto"
-                />
-              </div>
-              <div className="w-full md:w-[60%] text-left md:pl-8 mt-6 md:mt-0">
-                <h2 className="text-2xl md:text-4xl font-bold mb-4">{slide.title}</h2>
-                <p className="text-gray-700 text-sm md:text-base">{slide.text}</p>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row items-center bg-gray-100 rounded-lg overflow-hidden shadow p-4 sm:p-6 md:p-10">
+                <div className="w-full md:w-[40%]">
+                  <img
+                    src={slide.image}
+                    alt="Slide"
+                    className="w-full md:w-[90%] max-h-[200px] sm:max-h-[280px] object-contain mx-auto"
+                  />
+                </div>
+                <div className="w-full md:w-[60%] text-left md:pl-8 mt-4 sm:mt-6 md:mt-0">
+                  <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight">{slide.title}</h2>
+                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{slide.text}</p>
+                </div>
               </div>
             </div>
           </SwiperSlide>

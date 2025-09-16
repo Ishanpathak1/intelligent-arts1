@@ -94,7 +94,7 @@ const About = () => {
             {isEditing ? (
               <div className="space-y-4">
                 {formData.editors.map((editor, index) => (
-                  <div key={index} className="flex gap-4 items-center">
+                  <div key={index} className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                     <input
                       type="text"
                       placeholder="Name"
@@ -111,7 +111,7 @@ const About = () => {
                     />
                     <button
                       onClick={() => removePerson('editors', index)}
-                      className="text-red-600 hover:text-red-800 px-2"
+                      className="text-red-600 hover:text-red-800 px-2 py-2 sm:py-0 text-sm"
                     >
                       Remove
                     </button>
@@ -144,7 +144,7 @@ const About = () => {
             {isEditing ? (
               <div className="space-y-4">
                 {formData.authors.map((author, index) => (
-                  <div key={index} className="flex gap-4 items-center">
+                  <div key={index} className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                     <input
                       type="text"
                       placeholder="Name"
@@ -161,7 +161,7 @@ const About = () => {
                     />
                     <button
                       onClick={() => removePerson('authors', index)}
-                      className="text-red-600 hover:text-red-800 px-2"
+                      className="text-red-600 hover:text-red-800 px-2 py-2 sm:py-0 text-sm"
                     >
                       Remove
                     </button>
@@ -194,7 +194,7 @@ const About = () => {
             {isEditing ? (
               <div className="space-y-4">
                 {formData.friendsPartners.map((person, index) => (
-                  <div key={index} className="flex gap-4 items-center">
+                  <div key={index} className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                     <input
                       type="text"
                       placeholder="Name"
@@ -211,7 +211,7 @@ const About = () => {
                     />
                     <button
                       onClick={() => removePerson('friendsPartners', index)}
-                      className="text-red-600 hover:text-red-800 px-2"
+                      className="text-red-600 hover:text-red-800 px-2 py-2 sm:py-0 text-sm"
                     >
                       Remove
                     </button>
@@ -241,7 +241,7 @@ const About = () => {
         {isAdmin() && (
           <div className="text-center">
             {isEditing ? (
-              <div className="space-x-4">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 sm:justify-center">
                 <button
                   onClick={handleSave}
                   className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
