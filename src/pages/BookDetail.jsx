@@ -157,7 +157,7 @@ const BookDetail = () => {
                   <img
                     src={book.image}
                     alt={book.title}
-                    className="w-full max-w-xs sm:max-w-sm md:w-64 md:h-80 h-64 object-cover rounded-lg shadow-md"
+                    className="w-full max-w-xs sm:max-w-sm md:w-64 md:h-80 h-64 object-contain md:object-cover rounded-lg shadow-md"
                   />
                 </div>
                 <div className="flex-1">
