@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import FileUpload from '../components/FileUpload';
+import AuthorImage from '../components/AuthorImage';
 
 const AdminAuthors = () => {
   const { token } = useAuth();
@@ -343,7 +344,7 @@ const AdminAuthors = () => {
                   <tr key={author._id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <img
+                        <AuthorImage
                           src={author.image}
                           alt={author.name}
                           className="w-10 h-10 rounded-full object-contain bg-gray-100"

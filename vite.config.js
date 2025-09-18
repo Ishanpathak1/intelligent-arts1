@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         // Keep path as-is because Express mounts routes at /api/*
         // If your backend uses a different base path, adjust here
+      },
+      '/uploads': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        // Proxy uploads to backend static file serving
       }
     }
   }

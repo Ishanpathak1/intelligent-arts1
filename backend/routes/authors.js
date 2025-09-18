@@ -7,7 +7,35 @@ const mongoose = require('mongoose');
 // Get all authors (public: only active; treat missing isActive as active)
 router.get('/', async (req, res) => {
   try {
-    const authors = await Author.find({ $or: [ { isActive: { $exists: false } }, { isActive: true } ] }).select('-password');
+    const authors = await Author.aggregate([
+      {
+        $match: {
+          $or: [
+            { isActive: { $exists: false } },
+            { isActive: true }
+          ]
+        }
+      },
+      {
+        $lookup: {
+          from: 'titles',
+          localField: '_id',
+          foreignField: 'authorId',
+          as: 'titles'
+        }
+      },
+      {
+        $addFields: {
+          titleCount: { $size: '$titles' }
+        }
+      },
+      {
+        $project: {
+          password: 0,
+          titles: 0
+        }
+      }
+    ]);
     res.json(authors);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });

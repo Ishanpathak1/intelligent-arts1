@@ -92,10 +92,18 @@ const FileUpload = ({
       {/* Current Image Preview */}
       {currentImage && (
         <div className="mb-4">
+          <div className="text-xs text-gray-500 mb-1">Current image: {currentImage}</div>
           <img
             src={currentImage}
             alt="Current"
             className="w-32 h-32 object-cover rounded-lg border"
+            onError={(e) => {
+              console.error('Failed to load current image:', currentImage);
+              e.target.style.display = 'none';
+            }}
+            onLoad={() => {
+              console.log('Successfully loaded current image:', currentImage);
+            }}
           />
         </div>
       )}

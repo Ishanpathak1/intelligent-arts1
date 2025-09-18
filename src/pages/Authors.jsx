@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AuthorImage from '../components/AuthorImage';
+import ImageDebug from '../components/ImageDebug';
 
 const Authors = () => {
   const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
@@ -60,10 +62,12 @@ const Authors = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {authors.map((author) => (
+          {authors.map((author) => {
+            console.log('Author image URL:', author.image, 'for author:', author.name);
+            return (
             <div key={author._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-w-16 aspect-h-9">
-                <img
+                <ImageDebug
                   src={author.image}
                   alt={author.name}
                   className="w-full h-64 object-contain bg-gray-100"
@@ -74,7 +78,7 @@ const Authors = () => {
                 <p className="text-gray-600 mb-4 line-clamp-3">{author.intro}</p>
                 
                 <div className="mb-4">
-                  <span className="text-sm text-gray-500">Titles: {author.titles ? author.titles.length : 0}</span>
+                  <span className="text-sm text-gray-500">Titles: {author.titleCount || 0}</span>
                 </div>
 
                 <div className="mb-4">
@@ -98,7 +102,8 @@ const Authors = () => {
                 </Link>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

@@ -58,10 +58,6 @@ const titleSchema = new mongoose.Schema({
   tags: [{
     type: String
   }],
-  publishDate: {
-    type: Date,
-    default: Date.now
-  },
   // Purchase links and pricing
   purchaseLinks: [{
     platform: {

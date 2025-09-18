@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AuthorImage from '../components/AuthorImage';
 import Banner from '../components/Banner';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -131,7 +132,7 @@ const Affiliates = () => {
             >
               <div className="p-5 flex items-start gap-4 animate-fade-in-up" style={{ animationDelay: `${0.06 * index}s` }}>
                 <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
-                  <img src={author.image} alt={author.name} className="w-full h-full object-contain" />
+                  <AuthorImage src={author.image} alt={author.name} className="w-full h-full object-contain" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold group-hover:text-blue-700 transition-colors">{author.name}</h3>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import AuthorImage from '../components/AuthorImage';
 
 const AuthorProfile = () => {
   const { authorId } = useParams();
@@ -109,7 +110,7 @@ const AuthorProfile = () => {
               <p className="text-gray-700 leading-relaxed">{author.bio}</p>
             </div>
             <div className="flex justify-center lg:justify-end">
-              <img
+              <AuthorImage
                 src={author.image}
                 alt={author.name}
                 className="w-full max-w-80 h-64 sm:h-80 object-contain bg-gray-100 rounded-lg shadow-lg"
