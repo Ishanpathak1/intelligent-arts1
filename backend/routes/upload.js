@@ -9,6 +9,7 @@ const fs = require('fs');
 router.post('/image', adminAuth, (req, res) => {
   uploadSingle(req, res, function (err) {
     if (err) {
+      console.error('Upload error:', err);
       return res.status(400).json({ 
         message: err.message || 'File upload failed' 
       });
@@ -20,8 +21,23 @@ router.post('/image', adminAuth, (req, res) => {
       });
     }
 
+    // Verify file was actually saved
+    const fullPath = path.join(__dirname, '..', 'uploads', req.file.filename);
+    if (!fs.existsSync(fullPath)) {
+      console.error('File not found after upload:', fullPath);
+      return res.status(500).json({ 
+        message: 'File was not saved properly' 
+      });
+    }
+
     // Return the file path that can be used in the frontend
     const filePath = `/uploads/${req.file.filename}`;
+    
+    console.log('File uploaded successfully:', {
+      filename: req.file.filename,
+      path: fullPath,
+      size: req.file.size
+    });
     
     res.json({
       message: 'File uploaded successfully',
